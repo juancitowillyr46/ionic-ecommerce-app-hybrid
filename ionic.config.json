@@ -1,0 +1,7 @@
+{
+  "name": "tupedido-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

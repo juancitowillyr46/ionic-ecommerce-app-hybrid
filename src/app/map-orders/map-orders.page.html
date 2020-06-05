@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-align-items-center" [fullscreen]="true">
+
+      <ion-segment>
+        <ion-segment-button [routerLink]="['/assigned-orders']">
+          <ion-label>Lista</ion-label>
+        </ion-segment-button>
+        <ion-segment-button [routerLink]="['/map-orders']">
+          <ion-label>Mapa</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+
+      <ion-col>
+        <div id="map" style="height:400px;width: 100%;"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <app-map></app-map> -->
+</ion-content>

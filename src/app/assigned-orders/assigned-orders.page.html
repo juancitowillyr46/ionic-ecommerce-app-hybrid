@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Pedidos pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-text-center">
+      <ion-col size="12" class="ion-align-items-center" >
+        <ion-chip color="primary">
+          <ion-icon name="cart"></ion-icon>
+          <ion-label>Pedidos pendientes 7</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-segment (ionChange)="segmentChanged($event)" value="list">
+        <ion-segment-button value="list" layout="icon-start">
+          <ion-icon name="list"></ion-icon>
+          <ion-label>Ver en Lista</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="map" layout="icon-start">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Ver en Mapa</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <ion-col size="12" [hidden]="(segmentValue !== 'list')">
+        <ion-list>
+          <ion-item-sliding *ngFor="let order of assignedOrders">
+            <ion-item>
+              <ion-label>
+                <h3>N° Pedido: {{order.numOrder}}</h3>
+                <p>{{order.customer}}</p>
+              </ion-label>
+              <ion-note slot="end" color="primary">
+                <h3>{{order.amount | currency:'S/.'}}</h3>
+              </ion-note>
+            </ion-item>
+            <ion-item-options side="start">
+              <ion-item-option color="primary">Atender</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Cargando mas pedidos...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-col>
+      <ion-col size="12" [hidden]="(segmentValue !== 'map')">
+        <div id="map" style="height: 80vh;width: 100%;"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
