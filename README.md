@@ -1,2 +1,5 @@
 # ionic-ecommerce-app-hybrid
-Desarrollo de App Híbrida con Ionic + Leafletjs (OpenstreetMap)
+Desarrollo de App Híbrida utilizando el siguientes stack tecnológico
+
+Ionic Framework (https://ionicframework.com/)
+Leafletjs / OpenstreetMap (https://leafletjs.com/)
